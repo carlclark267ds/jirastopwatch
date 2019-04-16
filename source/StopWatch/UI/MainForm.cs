@@ -54,7 +54,7 @@ namespace StopWatch
             pMain.VerticalScroll.Visible = false;
             pMain.AutoScroll = true;
 
-            Text = string.Format("{0} v. {1}", Application.ProductName, Application.ProductVersion);
+            Text = string.Format("{0} V{1}", Application.ProductName, Application.ProductVersion);
 
             cbFilters.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFilters.DisplayMember = "Name";
