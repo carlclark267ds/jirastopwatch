@@ -42,7 +42,9 @@ namespace StopWatch
         {
             IRestClient client = restClientFactory.Create();
 
-            _logger.Log(string.Format("Request: {0}", client.BuildUri(request)));
+			Uri uri = client.BuildUri(request);
+
+			_logger.Log(string.Format("Request: {0}", uri));
             IRestResponse<T> response = client.Execute<T>(request);
             _logger.Log(string.Format("Response: {0} - {1}", response.StatusCode, StringHelpers.Truncate(response.Content, 100)));
 
@@ -85,7 +87,7 @@ namespace StopWatch
             var client = restClientFactory.Create(true);
             _logger.Log(string.Format("Request: {0}", client.BuildUri(request)));
             IRestResponse response = client.Execute(request);
-            _logger.Log(string.Format("Response: {0} - {1}", response.StatusCode, StringHelpers.Truncate(response.Content, 100)));
+            _logger.Log(string.Format("Response: {0} - {1}", response.StatusCode, StringHelpers.Truncate(response.Content, 2048)));
 
             if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
